@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# bd-poll-all-quotas -- Headless, zero-screenshot live quota repoller across all pools:
+#   - Claude Pools A, B, C, D (direct /api/oauth/usage JSON + bd-usage-probe.sh cache refresh)
+#   - OpenAI Codex (bd-codex-usage.sh --windows)
+#   - Antigravity AGY Gemini & AGY Claude/GPT (agy -p /usage --output-format json + bd-agy-usage.sh)
+#   - Kimi Code (bd-kimi-usage-watch.sh)
+#   - Local 4-GPU + BattleStation .137 2080 Ti + Dual-Vault (bd-local-pool-telemetry)
+#   - Grok (GROK_STATE.tsv + probe sync)
+set -euo pipefail
+
+exec /usr/bin/python3 /home/mboyle/bin/bd-pool-usage-refresher.py "$@"
